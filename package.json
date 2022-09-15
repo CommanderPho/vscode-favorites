@@ -154,6 +154,18 @@
                     "group": "favorites"
                 }
             ],
+            "editor/context": [
+                {
+                    "when": "resourceScheme == file",
+                    "command": "favorites.addFileToFavorites",
+                    "group": "favorites"
+                },
+                {
+                    "when": "resourceScheme == file",
+                    "command": "favorites.addFileToFavoritesGroup",
+                    "group": "favorites"
+                }
+            ],
             "view/title": [
                 {
                     "command": "favorites.collapse",
@@ -507,6 +519,14 @@
             {
                 "command": "favorites.addToFavoritesGroup",
                 "title": "Favorites: Add to group of favorites"
+            },
+            {
+                "command": "favorites.addFileToFavorites",
+                "title": "Favorites: Add file to favorites"
+            },
+            {
+                "command": "favorites.addFileToFavoritesGroup",
+                "title": "Favorites: Add file to group of favorites"
             },
             {
                 "command": "favorites.deleteFavorite",
