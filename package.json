@@ -34,7 +34,7 @@
     "homepage": "https://github.com/kdcro101/vscode-favorites/blob/master/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/kdcro101/vscode-favorites.git"
+        "url": "https://github.com/CommanderPho/vscode-favorites.git"
     },
     "activationEvents": [
         "*"
