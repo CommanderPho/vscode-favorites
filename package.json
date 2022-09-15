@@ -144,6 +144,17 @@
                     "group": "favorites"
                 }
             ],
+            "editor/title/context": [
+                {
+                    "command": "favorites.addToFavorites",
+                    "group": "favorites"
+                },
+                {
+                    "command": "favorites.addToFavoritesGroup",
+                    "group": "favorites"
+                }
+            ],
+
             "view/title": [
                 {
                     "command": "favorites.collapse",
