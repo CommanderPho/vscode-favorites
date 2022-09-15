@@ -154,7 +154,6 @@
                     "group": "favorites"
                 }
             ],
-
             "view/title": [
                 {
                     "command": "favorites.collapse",
