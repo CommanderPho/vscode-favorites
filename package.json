@@ -22,9 +22,11 @@
         "theme": "dark"
     },
     "scripts": {
-        "vscode:prepublish": "webpack --mode production",
+        "vscode:prepublish": "npm run package",
         "webpack": "webpack --mode development",
         "webpack-dev": "webpack --mode development --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "test-compile": "tsc -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install"
     },
     "icon": "icons/favorites.png",
@@ -40,7 +42,7 @@
         "*"
     ],
     "license": "GPL-3.0",
-    "main": "./packed/",
+    "main": "./packed/index",
     "contributes": {
         "keybindings": [
             {
@@ -97,6 +99,16 @@
                     ],
                     "default": "ASC",
                     "description": "Specify an order for all favorites"
+                },
+                "favorites.includeInDocumentBodyContextMenu": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Display the 'Favorites: Add to * favorites' commands in the editor context menu"
+                },
+                "favorites.includeInEditorTabContextMenu": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Display the 'Favorites: Add to * favorites' commands in the context menu for the tab of a specific file"
                 }
             }
         },
@@ -146,22 +158,24 @@
             ],
             "editor/title/context": [
                 {
+                    "when": "config.favorites.includeInEditorTabContextMenu",
                     "command": "favorites.addToFavorites",
                     "group": "favorites"
                 },
                 {
+                    "when": "config.favorites.includeInEditorTabContextMenu",
                     "command": "favorites.addToFavoritesGroup",
                     "group": "favorites"
                 }
             ],
             "editor/context": [
                 {
-                    "when": "resourceScheme == file",
+                    "when": "config.favorites.includeInDocumentBodyContextMenu && resourceScheme == file",
                     "command": "favorites.addFileToFavorites",
                     "group": "favorites"
                 },
                 {
-                    "when": "resourceScheme == file",
+                    "when": "config.favorites.includeInDocumentBodyContextMenu && resourceScheme == file",
                     "command": "favorites.addFileToFavoritesGroup",
                     "group": "favorites"
                 }
@@ -628,40 +642,41 @@
     },
     "devDependencies": {
         "@types/clipboardy": "^1.1.0",
-        "@types/color": "^3.0.0",
-        "@types/fs-extra": "^5.0.2",
-        "@types/lodash": "^4.14.108",
-        "@types/lodash-es": "^4.17.0",
-        "@types/md5": "^2.1.32",
-        "@types/minimatch": "^3.0.3",
+        "@types/color": "^3.0.3",
+        "@types/fs-extra": "^5.1.0",
+        "@types/lodash": "^4.14.185",
+        "@types/lodash-es": "^4.17.6",
+        "@types/md5": "^2.3.2",
+        "@types/minimatch": "^3.0.5",
         "@types/nconf": "0.0.37",
-        "@types/node": "^9.4.7",
+        "@types/node": "^9.6.61",
         "del": "^3.0.0",
+        "esbuild": "^0.15.7",
         "gulp": "^3.9.1",
-        "gulp-rename": "^1.2.2",
-        "ts-loader": "^5.3.0",
-        "tslint": "^5.9.1",
+        "gulp-rename": "^1.4.0",
+        "ts-loader": "^5.4.5",
+        "tslint": "^5.20.1",
         "typescript": "^3.9.10",
         "vscode": "^1.1.37",
         "vscode-nls-dev": "^2.1.6",
-        "webpack": "^4.25.1",
-        "webpack-cli": "^3.1.2"
+        "webpack": "^4.46.0",
+        "webpack-cli": "^3.3.12"
     },
     "dependencies": {
         "clipboardy": "^1.2.3",
-        "color": "^3.0.0",
-        "cryptiles": "^4.1.2",
-        "fs-extra": "^7.0.0",
+        "color": "^3.2.1",
+        "cryptiles": "^4.1.3",
+        "fs-extra": "^7.0.1",
         "gulp-remote-src-vscode": "^0.5.1",
         "html-colors": "0.0.6",
-        "lodash": "^4.17.5",
-        "lodash-es": "^4.17.10",
-        "md5": "^2.2.1",
-        "minimatch": "^3.0.4",
+        "lodash": "^4.17.21",
+        "lodash-es": "^4.17.21",
+        "md5": "^2.3.0",
+        "minimatch": "^3.1.2",
         "nconf": "^0.10.0",
-        "rxjs": "^6.2.2",
+        "rxjs": "^6.6.7",
         "spawn-sync": "^2.0.0",
         "trash": "^4.3.0",
-        "url-parse": "^1.4.3"
+        "url-parse": "^1.5.10"
     }
 }
